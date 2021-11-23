@@ -1,0 +1,52 @@
+query GetPokemonById($id: Int) {
+  pokemon_v2_pokemon_by_pk(id: $id) {
+    id
+    height
+    weight
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        id
+        move_damage_class_id
+        name
+      }
+    }
+  }
+}
+
+query GetPokemonByIds($ids: [Int!]) {
+  pokemon_v2_pokemon(
+    where: { id: { _in: $ids } }
+    order_by: { id: asc }
+    limit: 10
+  ) {
+    id
+    height
+    weight
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        id
+        move_damage_class_id
+        name
+      }
+    }
+  }
+}
+
+query GetPokemonByNames($names: [String!]) {
+  pokemon_v2_pokemon(
+    where: { name: { _in: $names } }
+    order_by: { id: asc }
+    limit: 10
+  ) {
+    id
+    height
+    weight
+    pokemon_v2_pokemontypes {
+      pokemon_v2_type {
+        id
+        move_damage_class_id
+        name
+      }
+    }
+  }
+}
