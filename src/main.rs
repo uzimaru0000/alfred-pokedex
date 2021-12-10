@@ -37,9 +37,10 @@ async fn main() -> Result<()> {
             .pokemon_v2_pokemon
             .iter()
             .map(|x| {
+                let translate_code_jp = translate_name(x.id, TranslateCode::Jp).unwrap();
                 let mut builder = alfred::ItemBuilder::new("pokedex")
-                    .arg(translate_name(x.id, TranslateCode::Jp).unwrap())
-                    .title(translate_name(x.id, TranslateCode::Jp).unwrap())
+                    .arg(translate_code_jp.clone())
+                    .title(translate_code_jp.clone())
                     .subtitle(x.id.to_string());
 
                 if let Some(path) = icons.get(&x.id) {
